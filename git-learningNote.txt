@@ -1,0 +1,48 @@
+1.命令行启动 git-bash  :bash
+       退出           ：exit/ctrl+d
+2.bash:
+  $pwd                  --显示当前目录
+  $mkdir                --创建文件夹
+  $cd
+3.基本操作
+    1.初始化仓库
+      $git init                --当前目录设置为管理仓库
+      2.提交文件
+      $git add <filename>      --添加文件
+      $git commit -m"message"  --提交<注释>
+    3.查看状态
+      $git status              --查看工作区状态
+      $git diff <filename>     --查看文件修改内容
+    4.回滚
+      --查看提交日志
+      $git log
+        --pretty=oneline
+        #退出 q/ctrl+c
+      $git relog
+      --回滚
+      $git reset
+        --hard HEAD^
+        --hard HEAD~n
+        --hard <commit>
+    5.概念解释 --暂存区（stage/index）
+      工作区(Working Directory)--暂存区(stage)--版本库(Repository)（主分支）
+      --git add 实际是把文件放入暂存区
+      --git commit 将文件加入分支
+    6.管理修改
+      --git commit 只提交暂存区的修改，如果没有先add，修改不会被加入版本库
+      --git diff 补充
+        --git diff <filename>         工作区--暂存区
+        --git diff --cached/staged    暂存区--版本库
+        --git diff HEAD -- <filename> 工作区--版本库
+    7.撤销修改
+      $git checkout -- <filename>    撤销工作区修改
+      $git reset HEAD -- <filename>  撤销暂存区修改（暂存区文件退回工作区）
+      $git rest --hard               版本库中文件回滚
+    8.文件删除
+      正常删除
+      $git rm <filename>
+      $git commit -m "message"
+      工作区误删
+      $git checkout -- <filename>
+      --删除可以看做是一次修改操作，所以撤销操作同上
+      --git checkout 实际是用（版本库+暂存区）中最新文件替换工作区文件
