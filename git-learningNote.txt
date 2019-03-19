@@ -10,6 +10,7 @@
       2.提交文件
       $git add <filename>      --添加文件
       $git commit -m"message"  --提交<注释>
+        --git commit --amend   --修改最近一次提交的注释
     3.查看状态
       $git status              --查看工作区状态
       $git diff <filename>     --查看文件修改内容
