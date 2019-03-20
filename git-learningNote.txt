@@ -48,18 +48,19 @@
         //删除可以看做是一次修改操作，所以撤销操作同上
         //git checkout 实际是用（版本库+暂存区）中最新文件替换工作区文件
     9.远程仓库
-      创建 SSH Key
-      $ssh-keygen -t rsa -C "youremail@example.com"
-        //主目录创建.SSH 文件夹及id_rsa文件
-        //id_rsa--秘钥    id_rsa.pub 公钥
+      创建 SSH Key:  $ssh-keygen -t rsa -C "youremail@example.com"
+                      //主目录创建.SSH 文件夹及id_rsa文件
+                      //id_rsa--秘钥    id_rsa.pub 公钥
       GitHub 账户添加SSH
-      Account settings-->SSH Keys 粘贴id_rsa.pub全部内容
-      关联
-      $git remote add origin <远程库>     origin：远程库默认名，可修改
-      $git push -u origin master         (第一次提交并关联(-u))
-      $git push origin master            (后续提交)
-      远程库克隆
-      %git clone <远程库>
+                Account settings-->SSH Keys 粘贴id_rsa.pub全部内容
+      关联:
+                $git remote add origin <远程库>     origin：远程库默认名，可修改
+                $git push -u origin master         (第一次提交并关联(-u))
+                $git push origin master            (后续提交)
+      远程库克隆:$git clone <远程库>
+      查看当前远程仓库：
+                $git remote
+                  -v           详细信息
    10.分支
       创建：     $git branch <name>
       切换：     $git checkout <name>
