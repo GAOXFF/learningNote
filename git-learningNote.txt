@@ -38,7 +38,7 @@
     7.撤销修改
       $git checkout -- <filename>    撤销工作区修改
       $git reset HEAD -- <filename>  撤销暂存区修改（暂存区文件退回工作区）
-      $git rest --hard               版本库中文件回滚
+      $git reset --hard               版本库中文件回滚
     8.文件删除
       正常删除
       $git rm <filename>
@@ -72,14 +72,15 @@
                 //fast forward    在无冲突的情况下合并，log里不显示合并操作
                                   按照直接更新显示,会丢掉分支信息
                 //no-ff           显示合并操作，保留分支信息
+        冲突：文件中会显示冲突部分，删除不需要的地方再次提交
+          --git log --graph         显示分支图
+          --abbrev-commit 简化commit
       删除：     $git branch -d <name>
         删除补充：--git branch -D <name>    强制删除非未合并分支
                 //没有合并的分支删除后就丢失了
                 //分支未合并普通删除删不掉
                 //这个不记也行，会有提示
-      冲突：文件中会显示冲突部分，删除不需要的地方再次提交
-        --git log --graph         显示分支图
-                  --abbrev-commit 简化commit
+
       暂存现场:
                 $git stash        暂存现场，清空工作区
                 $git stash list   显示暂存列表
@@ -102,4 +103,21 @@
       删除：
                    $git tag -d <tagname>  删除本地
                    $git push <远程库名> :refs/tags/<tagname>
-                   
+   #############################教程之外################################
+   1. $git checkout <commit id>
+        可以查看历史版本，实际新建临时分支，当转回主分支时会自动删除
+   2. $git reset HEAD
+        清空暂存区，实际上是用版本库当前分支的目录树替换暂存区目录
+        （工作区，暂存区，版本库存在三组指针序列，当各种指针序列相同时为无修改？）
+   3. git rm --cached<file>
+        可以清除暂存区指定文件
+   4.git checkout . /git checkout -- <file>
+        用暂存区 全部/指定文件 替换工作区文件
+   5.git checkout HEAD . /git checkout HEAD <file>
+        用HEAD指向分支的版本库文件替换工作区和暂存区文件  （可以用来恢复文件？）
+     注：网上说4.5的操作很危险，说明工作区文件还是很重要的？不应该提交后情况工作区
+   6.当想要放弃修改时，尽量少用 git checkout -- <file>
+     这种方法因为没有提交到版本库无法恢复
+     多用git stash替换
+   7.git stash 可以用来转移不同分支的工作区
+   ###################################################################
