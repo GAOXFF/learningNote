@@ -54,7 +54,7 @@
       GitHub 账户添加SSH
                 Account settings-->SSH Keys 粘贴id_rsa.pub全部内容
       关联:
-                $git remote add origin <远程库>     origin：远程库默认名，可修改
+                $git remote add <远程库名称> <远程库>     远程库名称：远程库默认名origin
                 $git push -u origin master         (第一次提交并关联(-u))
                 $git push origin master            (后续提交)
       远程库克隆:$git clone <远程库>
@@ -89,3 +89,17 @@
                 $git stash drop   删除
       ***多人合作：暂时用不到后续再看
       ***rebase：
+   10.标签(给commit号起一个别名)
+      新建：       $git tag <tagname>                    默认为当前分支HEAD
+                    --git tag <tagname> <commit id>      对指定commit id
+                    --git tag -a <tagname> -m "message"  添加说明
+      查看：
+                   $git tag              查看所有标签
+                   $git show <tagname>   查看标签详情
+      推送:
+                   $git push <远程库名> <tagname>
+                   $git push --tags      推送全部本地标签
+      删除：
+                   $git tag -d <tagname>  删除本地
+                   $git push <远程库名> :refs/tags/<tagname>
+                   
