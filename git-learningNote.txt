@@ -57,7 +57,11 @@
                 $git remote add <远程库名称> <远程库>     远程库名称：远程库默认名origin
                 $git push -u origin master         (第一次提交并关联(-u))
                 $git push origin master            (后续提交)
+                //git clone <远程库地址> 建立关联并clone到本地，默认名origin
       远程库克隆:$git clone <远程库>
+                //第一次用 clone
+                //后续用 pull
+                //或者 fetch(更新本地远程库)+merge origin/master master
       查看当前远程仓库：
                 $git remote
                   -v           详细信息
@@ -116,8 +120,19 @@
    5.git checkout HEAD . /git checkout HEAD <file>
         用HEAD指向分支的版本库文件替换工作区和暂存区文件  （可以用来恢复文件？）
      注：网上说4.5的操作很危险，说明工作区文件还是很重要的？不应该提交后情况工作区
+         4、5操作是从repository/stage中下载文件，替换同名文件，对工作区新增文件不影响
    6.当想要放弃修改时，尽量少用 git checkout -- <file>
      这种方法因为没有提交到版本库无法恢复
      多用git stash替换
    7.git stash 可以用来转移不同分支的工作区
    ###################################################################
+   基本流程图
+        workspace----------index----------local repository----------remote
+  提交：    |------add------>|-----commit------->|---------push------->|
+  恢复1：   |<-------------pull or rebase or clone(first)--------------|
+  恢复2：                                        |<-------fetch--------|
+  恢复3：   |<----------------checkout HEAD------|
+  恢复4：   |<----checkout---|
+  比较1：   |<-----------diff HEAD-------------->|
+  比较2：                    |<--diff --cached-->|
+  比较3：   |<-----diff----->|
